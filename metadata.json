@@ -1,0 +1,8 @@
+{
+  "name": "JINNA 5",
+  "description": "منصة JINNA 5: From Zero to Ultimate Pro - هندسة وبحوث أنظمة الذكاء الاصطناعي وبناء وتدريب النماذج الضخمة (LLMs). إشراف وتطوير المهندس يوسف الباز (Automation Ai Yousuf Albaz)",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

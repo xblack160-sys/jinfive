@@ -1,0 +1,337 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: normal;
+    word-spacing: normal;
+  }
+
+  /* When platform is in English mode, prioritize pristine Inter typography with healthy tracking */
+  html[lang="en"] body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: -0.011em;
+    word-spacing: 0.02em;
+  }
+
+  /* Prevent letter-spacing distortion or squished glyphs across all cards and canvas wrappers */
+  #certificate-printable-card,
+  #certificate-printable-card * {
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    direction: ltr;
+    text-align: left;
+    letter-spacing: normal;
+  }
+}
+
+/* Theme variables and styles */
+:root, [data-theme="dark"] {
+  --app-bg: #0A0A0C;
+  --header-bg: rgba(10, 10, 12, 0.92);
+  --sidebar-bg: #0D0D12;
+  --card-bg: #101017;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --accent-cyan: #06B6D4;
+}
+
+[data-theme="light"] {
+  --app-bg: #F1F5F9;
+  --header-bg: rgba(255, 255, 255, 0.98);
+  --sidebar-bg: #FFFFFF;
+  --card-bg: #FFFFFF;
+  --card-border: #CBD5E1;
+  --text-primary: #090D16;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  --accent-cyan: #0284C7;
+}
+
+[data-theme="light"] body {
+  background-color: #F1F5F9;
+  color: #090D16;
+}
+
+[data-theme="light"] .theme-bg-app {
+  background-color: #F1F5F9 !important;
+}
+
+[data-theme="light"] .theme-bg-surface {
+  background-color: #FFFFFF !important;
+  color: #090D16 !important;
+  border-color: #CBD5E1 !important;
+}
+
+[data-theme="light"] .theme-bg-card {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  color: #090D16 !important;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.08), 0 1px 2px -1px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="light"] .theme-border {
+  border-color: #CBD5E1 !important;
+}
+
+[data-theme="light"] .theme-text-primary {
+  color: #090D16 !important;
+}
+
+[data-theme="light"] .theme-text-secondary {
+  color: #334155 !important;
+}
+
+/* Sleek scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2D3142;
+  border-radius: 4px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3B4252;
+}
+
+/* Keyframe animations */
+@keyframes calmWaveShimmer {
+  0% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.4));
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.6));
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.4));
+  }
+}
+
+.animate-calm-badge-5 {
+  background: linear-gradient(135deg, #0284C7, #2563EB, #4F46E5, #0D9488);
+  background-size: 200% 200%;
+  animation: calmWaveShimmer 4s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes jinnaShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-jinna-shimmer {
+  background-size: 200% auto;
+  animation: jinnaShimmer 4s linear infinite;
+}
+
+@keyframes jinnaGlowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.5)) drop-shadow(0 0 16px rgba(59, 130, 246, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(6, 182, 212, 0.9)) drop-shadow(0 0 28px rgba(99, 102, 241, 0.55));
+  }
+}
+
+.animate-jinna-glow {
+  animation: jinnaGlowPulse 3s ease-in-out infinite;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 12s linear infinite;
+}
+
+@keyframes pulseBorder {
+  0%, 100% {
+    border-color: rgba(6, 182, 212, 0.4);
+    box-shadow: 0 0 12px rgba(6, 182, 212, 0.2);
+  }
+  50% {
+    border-color: rgba(99, 102, 241, 0.6);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+}
+
+.animate-pulse-border {
+  animation: pulseBorder 3s ease-in-out infinite;
+}
+
+/* Modern Cybernetic Animations */
+@keyframes neonFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-neon-float {
+  animation: neonFloat 4s ease-in-out infinite;
+}
+
+@keyframes holographicShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-hologram {
+  background: linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.15) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: holographicShimmer 3s infinite linear;
+}
+
+/* Exclusive JINNA 5 Aurora Gradient Animation */
+@keyframes jinnaFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-jinna-flow {
+  background: linear-gradient(135deg, #38BDF8 0%, #818CF8 25%, #C084FC 50%, #F43F5E 75%, #06B6D4 100%);
+  background-size: 300% 300%;
+  animation: jinnaFlow 6s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.animate-jinna-flow-light {
+  background: linear-gradient(135deg, #0284C7 0%, #4F46E5 30%, #9333EA 60%, #0369A1 100%);
+  background-size: 300% 300%;
+  animation: jinnaFlow 6s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes laserSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  50%, 100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-laser-sweep {
+  animation: laserSweep 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Interactive Motion & Click Dynamics */
+button, a, [role="button"], .cursor-pointer {
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+button:active, [role="button"]:active {
+  transform: scale(0.96);
+}
+
+/* Card Hover Elevation */
+.card-hover-effect {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.card-hover-effect:hover {
+  transform: translateY(-3px);
+}
+
+/* Anti-Screenshot, Text Theft & Security Protection */
+body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+input, textarea, [contenteditable="true"] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Print Perfection for Verified Certificate only, otherwise hide whole page */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #certificate-printable-card,
+  #certificate-printable-card * {
+    visibility: visible;
+  }
+  #certificate-printable-card {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+    background: #070912 !important;
+    border: 3px double #D97706 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+

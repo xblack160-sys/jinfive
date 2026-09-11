@@ -1,0 +1,80 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Student profile, enrollment details, and global learning track",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Unique identifier for the student" },
+        "fullName": { "type": "string", "description": "Student display name" },
+        "email": { "type": "string", "description": "Student contact email" },
+        "enrolledAt": { "type": "string", "description": "Enrollment ISO timestamp" },
+        "currentLessonId": { "type": "string", "description": "Last active lesson ID" },
+        "totalStudyHours": { "type": "number", "description": "Accumulated learning hours" },
+        "completedLessons": { "type": "array", "description": "Array of completed lesson IDs" },
+        "certificateEarned": { "type": "boolean", "description": "Whether diploma certificate was issued" }
+      },
+      "required": ["userId", "fullName"]
+    },
+    "LessonProgress": {
+      "title": "LessonProgress",
+      "description": "Per-lesson completion status, lab marks, and quiz results",
+      "type": "object",
+      "properties": {
+        "lessonId": { "type": "string", "description": "ID of the curriculum lesson" },
+        "userId": { "type": "string", "description": "Student identifier" },
+        "isCompleted": { "type": "boolean", "description": "Whether lesson was marked finished" },
+        "quizPassed": { "type": "boolean", "description": "Whether the lesson quiz was passed" },
+        "quizScore": { "type": "number", "description": "Student score on quiz in percent" },
+        "completedAt": { "type": "string", "description": "Completion ISO timestamp" }
+      },
+      "required": ["lessonId", "userId", "isCompleted"]
+    },
+    "StudentNote": {
+      "title": "StudentNote",
+      "description": "Private study notes taken by student per lesson",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique note record ID" },
+        "userId": { "type": "string", "description": "Author student ID" },
+        "lessonId": { "type": "string", "description": "Target lesson ID" },
+        "content": { "type": "string", "description": "Markdown or text note content" },
+        "updatedAt": { "type": "string", "description": "Last updated ISO timestamp" }
+      },
+      "required": ["id", "userId", "lessonId", "content"]
+    },
+    "Certificate": {
+      "title": "Certificate",
+      "description": "Accredited DeepLearning AI diploma certificate record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique serial code" },
+        "userId": { "type": "string", "description": "Student ID" },
+        "studentName": { "type": "string", "description": "Name printed on certificate" },
+        "issueDate": { "type": "string", "description": "Issue ISO timestamp" },
+        "totalHours": { "type": "number", "description": "Accredited hours total" },
+        "specializationTitle": { "type": "string", "description": "Diploma specialization title" },
+        "verificationHash": { "type": "string", "description": "Cryptographic verification hash" }
+      },
+      "required": ["id", "userId", "studentName", "issueDate", "verificationHash"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Individual student profile and learning credentials"
+    },
+    "/users/{userId}/progress/{lessonId}": {
+      "schema": "LessonProgress",
+      "description": "Lesson progress and quiz records for a specific student"
+    },
+    "/users/{userId}/notes/{noteId}": {
+      "schema": "StudentNote",
+      "description": "Personal notes for a specific student"
+    },
+    "/certificates/{certId}": {
+      "schema": "Certificate",
+      "description": "Publicly verifiable completion certificates"
+    }
+  }
+}

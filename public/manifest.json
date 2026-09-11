@@ -1,0 +1,38 @@
+{
+  "name": "JINNA 5 - أكاديمية وبحوث الذكاء الاصطناعي",
+  "short_name": "JINNA 5",
+  "description": "منصة JINNA 5: From Zero to Ultimate Pro - هندسة وبحوث أنظمة الذكاء الاصطناعي وبناء وتدريب النماذج الضخمة (LLMs). إشراف وتطوير المهندس يوسف الباز (Automation Ai Yousuf Albaz)",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0B14",
+  "theme_color": "#0A0B14",
+  "orientation": "portrait-primary",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["education", "developer", "productivity"]
+}

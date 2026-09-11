@@ -1,0 +1,182 @@
+<svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGlow" cx="50%" cy="48%" r="60%">
+      <stop offset="0%" stopColor="#0B132B" />
+      <stop offset="60%" stopColor="#060913" />
+      <stop offset="100%" stopColor="#030408" />
+    </radialGradient>
+
+    <!-- Golden Metallic 5 Gradient -->
+    <linearGradient id="goldGradient" x1="20%" y1="0%" x2="90%" y2="100%">
+      <stop offset="0%" stopColor="#FFF3B0" />
+      <stop offset="25%" stopColor="#F5B738" />
+      <stop offset="55%" stopColor="#D97706" />
+      <stop offset="85%" stopColor="#B45309" />
+      <stop offset="100%" stopColor="#78350F" />
+    </linearGradient>
+
+    <!-- Teal Cyan J Ribbon Gradient -->
+    <linearGradient id="tealGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#042F2E" />
+      <stop offset="30%" stopColor="#0D9488" />
+      <stop offset="70%" stopColor="#06B6D4" />
+      <stop offset="100%" stopColor="#38BDF8" />
+    </linearGradient>
+
+    <!-- Cyan Glow for Neural Network -->
+    <radialGradient id="cyanNodeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stopColor="#E0F2FE" />
+      <stop offset="40%" stopColor="#38BDF8" />
+      <stop offset="100%" stopColor="#0284C7" stopOpacity="0" />
+    </radialGradient>
+
+    <!-- Gold Node Glow -->
+    <radialGradient id="goldNodeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stopColor="#FEF08A" />
+      <stop offset="40%" stopColor="#F59E0B" />
+      <stop offset="100%" stopColor="#D97706" stopOpacity="0" />
+    </radialGradient>
+
+    <!-- Subtle Drop Shadows -->
+    <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Base Rounded Container with Cybernetic Frame -->
+  <rect width="512" height="512" rx="110" fill="url(#bgGlow)" />
+  <rect x="6" y="6" width="500" height="500" rx="104" stroke="#0D9488" stroke-opacity="0.35" stroke-width="3" />
+  <rect x="18" y="18" width="476" height="476" rx="94" stroke="#F59E0B" stroke-opacity="0.2" stroke-width="1.5" stroke-dasharray="8 4" />
+
+  <!-- Background Ambient Glow Behind Emblem -->
+  <circle cx="280" cy="240" r="140" fill="#0284C7" fill-opacity="0.12" filter="url(#glowFilter)" />
+  <circle cx="340" cy="220" r="110" fill="#F59E0B" fill-opacity="0.12" filter="url(#glowFilter)" />
+
+  <!-- ==================== EMBLEM J5 ==================== -->
+
+  <!-- Outer Sweeping Teal/Cyan "J" Ribbon -->
+  <path d="M 140 250 
+           C 140 315, 175 355, 235 355 
+           C 285 355, 320 325, 345 285 
+           C 310 320, 275 332, 235 332 
+           C 185 332, 160 295, 160 248 
+           L 160 200 
+           C 160 200, 195 160, 260 140
+           C 320 120, 360 145, 375 165
+           L 360 180
+           C 340 155, 305 142, 255 158
+           C 200 176, 170 215, 165 240
+           Z" 
+        fill="url(#tealGradient)" 
+        filter="url(#glowFilter)" />
+
+  <!-- Smooth 3D Main Cyan "J" Stem -->
+  <path d="M 152 245 
+           C 152 295, 185 340, 240 340 
+           C 285 340, 328 308, 350 268 
+           C 330 298, 290 322, 245 322 
+           C 198 322, 172 285, 172 245 
+           C 172 195, 215 150, 275 135 
+           C 335 120, 372 152, 380 168 
+           L 368 180 
+           C 355 162, 325 138, 272 150 
+           C 222 162, 182 200, 176 242 
+           Z" 
+        fill="url(#tealGradient)" />
+
+  <!-- Golden Intertwined "5" Shape -->
+  <!-- Top Bar & Curve of 5 -->
+  <path d="M 285 155 
+           L 380 155 
+           L 368 178 
+           L 305 178 
+           L 290 220 
+           C 305 210, 330 205, 360 215 
+           C 405 230, 425 272, 415 320 
+           C 402 368, 355 400, 295 398 
+           C 255 396, 225 380, 205 360 
+           L 225 340 
+           C 240 355, 265 372, 300 374 
+           C 342 376, 378 350, 388 315 
+           C 396 280, 378 248, 345 240 
+           C 320 234, 298 242, 280 255 
+           L 260 250 
+           Z" 
+        fill="url(#goldGradient)" 
+        filter="url(#glowFilter)" />
+
+  <!-- Inner Shading Highlight for 5 -->
+  <path d="M 292 162 L 372 162 L 364 172 L 310 172 L 298 212 C 315 204, 338 202, 362 210 C 398 222, 415 258, 408 298 C 400 338, 365 370, 318 372 C 285 372, 258 358, 238 342 L 246 332 C 262 346, 285 358, 316 358 C 352 358, 382 332, 390 298 C 396 266, 380 238, 348 230 C 322 224, 302 232, 286 244 Z" fill="#FEF08A" opacity="0.6" />
+
+  <!-- ==================== CENTRAL NEURAL BRAIN NETWORK ==================== -->
+  <g opacity="0.95">
+    <!-- Synaptic Connection Lines -->
+    <path d="M 235 215 L 260 230 L 290 220 L 310 245 L 305 275 L 275 285 L 245 270 L 235 240 Z" stroke="#38BDF8" stroke-width="2.5" stroke-opacity="0.8" />
+    <path d="M 260 230 L 275 255 L 305 275" stroke="#38BDF8" stroke-width="2" stroke-opacity="0.7" />
+    <path d="M 275 255 L 245 270" stroke="#38BDF8" stroke-width="2" stroke-opacity="0.7" />
+    <path d="M 260 230 L 245 270" stroke="#F59E0B" stroke-width="1.8" stroke-opacity="0.6" stroke-dasharray="3 3" />
+    <path d="M 290 220 L 275 255 L 275 285" stroke="#38BDF8" stroke-width="2" stroke-opacity="0.8" />
+
+    <!-- Circuit Branches Flowing Upward to Glowing Nodes -->
+    <path d="M 330 160 Q 345 130 365 118" stroke="#F59E0B" stroke-width="2.5" />
+    <path d="M 355 160 Q 375 138 400 135" stroke="#F59E0B" stroke-width="2.5" />
+    <path d="M 375 170 Q 405 162 425 175" stroke="#F59E0B" stroke-width="2.5" />
+
+    <path d="M 210 180 Q 185 160 165 150" stroke="#38BDF8" stroke-width="2.5" />
+    <path d="M 180 210 Q 150 200 130 205" stroke="#38BDF8" stroke-width="2.5" />
+    <path d="M 165 250 Q 135 255 115 275" stroke="#38BDF8" stroke-width="2.5" />
+
+    <!-- Neural Brain Synapse Nodes -->
+    <circle cx="235" cy="215" r="5" fill="#38BDF8" />
+    <circle cx="260" cy="230" r="6" fill="#FFFFFF" />
+    <circle cx="290" cy="220" r="5.5" fill="#38BDF8" />
+    <circle cx="310" cy="245" r="6" fill="#F59E0B" />
+    <circle cx="305" cy="275" r="6.5" fill="#FFFFFF" />
+    <circle cx="275" cy="285" r="5" fill="#38BDF8" />
+    <circle cx="245" cy="270" r="6" fill="#F59E0B" />
+    <circle cx="275" cy="255" r="7" fill="#FFFFFF" />
+    <circle cx="275" cy="255" r="4" fill="#38BDF8" />
+
+    <!-- Glowing Circuit Terminal Bulbs (Golden) -->
+    <circle cx="365" cy="118" r="8" fill="url(#goldNodeGlow)" />
+    <circle cx="365" cy="118" r="4.5" fill="#FFFBEB" />
+
+    <circle cx="400" cy="135" r="9" fill="url(#goldNodeGlow)" />
+    <circle cx="400" cy="135" r="5" fill="#FFFBEB" />
+
+    <circle cx="425" cy="175" r="8" fill="url(#goldNodeGlow)" />
+    <circle cx="425" cy="175" r="4.5" fill="#FFFBEB" />
+
+    <!-- Glowing Circuit Terminal Bulbs (Cyan) -->
+    <circle cx="165" cy="150" r="8" fill="url(#cyanNodeGlow)" />
+    <circle cx="165" cy="150" r="4" fill="#FFFFFF" />
+
+    <circle cx="130" cy="205" r="8" fill="url(#cyanNodeGlow)" />
+    <circle cx="130" cy="205" r="4" fill="#FFFFFF" />
+
+    <circle cx="115" cy="275" r="8" fill="url(#cyanNodeGlow)" />
+    <circle cx="115" cy="275" r="4" fill="#FFFFFF" />
+  </g>
+
+  <!-- Brand Typography: JINNA 5 -->
+  <g id="brandText" transform="translate(0, 30)">
+    <!-- Main JINNA Word -->
+    <text x="145" y="420" font-family="'Cairo', 'Inter', system-ui, sans-serif" font-weight="900" font-size="44" fill="#FFFFFF" letter-spacing="4">JINNA</text>
+    
+    <!-- 5 in Gold Gradient -->
+    <text x="330" y="420" font-family="'Cairo', 'Inter', system-ui, sans-serif" font-weight="900" font-size="48" fill="url(#goldGradient)" letter-spacing="2">5</text>
+    
+    <!-- Constellation dots on the 5 -->
+    <circle cx="356" cy="385" r="3" fill="#38BDF8" />
+    <circle cx="370" cy="405" r="3" fill="#FEF08A" />
+    <line x1="356" y1="385" x2="370" y2="405" stroke="#38BDF8" stroke-width="1.5" stroke-dasharray="2 2" />
+
+    <!-- Subtitle: AI LEARNING PLATFORM -->
+    <text x="256" y="446" font-family="'Cairo', 'Inter', system-ui, sans-serif" font-weight="800" font-size="13" fill="#38BDF8" letter-spacing="3" text-anchor="middle">AI LEARNING PLATFORM</text>
+    
+    <!-- Tagline: COMPLETE DIPLOMA FROM SCRATCH -->
+    <text x="256" y="464" font-family="'Cairo', 'Inter', system-ui, sans-serif" font-weight="600" font-size="10.5" fill="#94A3B8" letter-spacing="2" text-anchor="middle">COMPLETE DIPLOMA FROM SCRATCH</text>
+  </g>
+</svg>

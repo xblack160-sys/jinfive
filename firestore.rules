@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Connection test document
+    match /test/connection {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Student user profiles
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if isOwner(userId) || (isAuthenticated() && request.auth.uid == userId);
+      
+      // Progress subcollection
+      match /progress/{lessonId} {
+        allow read, write: if isOwner(userId) || (isAuthenticated() && request.auth.uid == userId);
+      }
+      
+      // Student notes subcollection
+      match /notes/{noteId} {
+        allow read, write: if isOwner(userId) || (isAuthenticated() && request.auth.uid == userId);
+      }
+    }
+
+    // Publicly verifiable certificates
+    match /certificates/{certId} {
+      allow read: if true;
+      allow create: if isAuthenticated();
+      allow update, delete: if false;
+    }
+  }
+}
