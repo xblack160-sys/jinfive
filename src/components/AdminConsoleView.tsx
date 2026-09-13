@@ -486,23 +486,28 @@ export const AdminConsoleView: React.FC<AdminConsoleViewProps> = ({
                   <table className="w-full text-right text-xs">
                     <thead>
                       <tr className="border-b border-white/[0.08] text-slate-400 pb-2">
-                        <th className="py-2.5 px-3 font-semibold">معرّف الطالب (User ID)</th>
+                        <th className="py-2.5 px-3 font-semibold">اسم الطالب والبريد</th>
+                        <th className="py-2.5 px-3 font-semibold">معرّف الطالب (UID)</th>
                         <th className="py-2.5 px-3 font-semibold">الدروس المنجزة</th>
                         <th className="py-2.5 px-3 font-semibold">الدرس الحالي</th>
-                        <th className="py-2.5 px-3 font-semibold">آخر نشاط</th>
+                        <th className="py-2.5 px-3 font-semibold">تاريخ التسجيل</th>
                         <th className="py-2.5 px-3 font-semibold">الاختبارات</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-white/[0.04]">
                       {studentsList.map((st, idx) => (
                         <tr key={st.id || idx} className="hover:bg-white/[0.02]">
-                          <td className="py-2.5 px-3 font-mono text-cyan-300 font-semibold">{st.id || st.userId || `Student-${idx + 1}`}</td>
+                          <td className="py-2.5 px-3">
+                            <div className="font-bold text-slate-100">{st.fullName || st.displayName || 'طالب زائر (Anonymous)'}</div>
+                            <div className="text-[10px] text-cyan-400 font-mono">{st.email || 'لا يوجد بريد مسجل'}</div>
+                          </td>
+                          <td className="py-2.5 px-3 font-mono text-slate-400 text-[11px]">{st.id || st.userId || `Student-${idx + 1}`}</td>
                           <td className="py-2.5 px-3 text-emerald-400 font-bold">
                             {Array.isArray(st.completedLessons) ? `${st.completedLessons.length} درساً` : '0'}
                           </td>
                           <td className="py-2.5 px-3 text-slate-300 font-mono text-[11px]">{st.currentLessonId || 'لم يبدأ'}</td>
                           <td className="py-2.5 px-3 text-slate-400 font-mono text-[11px]">
-                            {st.lastActive ? new Date(st.lastActive).toLocaleString('ar-EG') : 'غير مسجل'}
+                            {st.enrolledAt ? new Date(st.enrolledAt).toLocaleDateString('ar-EG') : (st.lastActive ? new Date(st.lastActive).toLocaleDateString('ar-EG') : 'الآن')}
                           </td>
                           <td className="py-2.5 px-3 text-slate-300 font-mono text-[11px]">
                             {st.quizScores ? Object.keys(st.quizScores).length : 0} مكتمل

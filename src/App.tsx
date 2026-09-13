@@ -20,6 +20,7 @@ import { AdminAuthModal } from './components/AdminAuthModal';
 import { AdminConsoleView } from './components/AdminConsoleView';
 import { AdsControlModal } from './components/AdsControlModal';
 import { InstructionsModal } from './components/InstructionsModal';
+import { StudentAuthModal } from './components/StudentAuthModal';
 import { SecurityShield } from './components/SecurityShield';
 import { InteractiveClickWave } from './components/InteractiveClickWave';
 import { InteractiveBackgroundMesh } from './components/InteractiveBackgroundMesh';
@@ -96,6 +97,7 @@ function AppContent() {
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
   const [isCertificateOpen, setIsCertificateOpen] = useState(false);
   const [isVerificationMode, setIsVerificationMode] = useState(false);
+  const [isStudentAuthOpen, setIsStudentAuthOpen] = useState(false);
   const [isSyllabusOpen, setIsSyllabusOpen] = useState(false);
   const [isNotesOpen, setIsNotesOpen] = useState(false);
   const [isBooksOpen, setIsBooksOpen] = useState(false);
@@ -365,6 +367,9 @@ function AppContent() {
             setIsAdminAuthOpen(true);
           }
         }}
+        onOpenStudentAuth={() => setIsStudentAuthOpen(true)}
+        studentName={progress.studentName || currentUser?.displayName || ''}
+        isRegisteredStudent={Boolean(currentUser && !currentUser.isAnonymous)}
         cloudSynced={isCloudSynced}
         isAdminUnlocked={isDevMode}
       />
@@ -552,6 +557,25 @@ function AppContent() {
       <BooksLibraryModal
         isOpen={isBooksOpen}
         onClose={() => setIsBooksOpen(false)}
+      />
+
+      {/* Student Account & Cloud Registry Modal */}
+      <StudentAuthModal
+        isOpen={isStudentAuthOpen}
+        onClose={() => setIsStudentAuthOpen(false)}
+        currentUser={currentUser}
+        currentStudentName={progress.studentName || currentUser?.displayName || ''}
+        onStudentUpdated={(user, name) => {
+          setCurrentUser(user);
+          if (name) {
+            setProgress(prev => ({ ...prev, studentName: name }));
+            try {
+              localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify({ ...progress, studentName: name }));
+            } catch (e) {
+              // ignore
+            }
+          }
+        }}
       />
 
       {/* Cloud AI Studio IDE Workstation for Big Projects */}

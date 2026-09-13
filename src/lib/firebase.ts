@@ -1,5 +1,14 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getAuth, signInAnonymously, onAuthStateChanged, User } from 'firebase/auth';
+import { 
+  getAuth, 
+  signInAnonymously, 
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signOut,
+  onAuthStateChanged, 
+  User 
+} from 'firebase/auth';
 import { 
   getFirestore, 
   doc, 
@@ -39,7 +48,7 @@ export async function testFirestoreConnection(): Promise<boolean> {
   }
 }
 
-// Auto sign-in anonymously for frictionless student persistence
+// Auto sign-in or resume session
 export function initAuthListener(onUserReady: (user: User | null) => void) {
   return onAuthStateChanged(auth, async (user) => {
     if (user) {
@@ -54,6 +63,53 @@ export function initAuthListener(onUserReady: (user: User | null) => void) {
       }
     }
   });
+}
+
+// Student Registration with Real Email & Password & Name
+export async function registerStudent(name: string, email: string, pass: string): Promise<User> {
+  const cred = await createUserWithEmailAndPassword(auth, email.trim(), pass);
+  if (cred.user) {
+    await updateProfile(cred.user, { displayName: name.trim() });
+    // Write profile immediately to Firestore
+    const userRef = doc(db, 'users', cred.user.uid);
+    await setDoc(userRef, {
+      userId: cred.user.uid,
+      fullName: name.trim(),
+      email: email.trim().toLowerCase(),
+      isAnonymous: false,
+      enrolledAt: new Date().toISOString(),
+      updatedAt: serverTimestamp(),
+      completedLessons: [],
+      quizScores: {},
+      totalStudyHours: 0
+    }, { merge: true });
+  }
+  return cred.user;
+}
+
+// Student Login with Email & Password
+export async function loginStudent(email: string, pass: string): Promise<User> {
+  const cred = await signInWithEmailAndPassword(auth, email.trim(), pass);
+  return cred.user;
+}
+
+// Sign out student
+export async function logoutStudent(): Promise<void> {
+  await signOut(auth);
+}
+
+// Update student profile details in Firestore
+export async function updateStudentProfile(userId: string, data: { fullName?: string; email?: string }): Promise<void> {
+  if (!userId) return;
+  try {
+    const userRef = doc(db, 'users', userId);
+    await setDoc(userRef, {
+      ...data,
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+  } catch (err) {
+    console.warn('[Firestore] Failed to update profile:', err);
+  }
 }
 
 // Save student progress to Firestore

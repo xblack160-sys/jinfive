@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { 
   Award, Calculator, Sparkles, BookOpen, CheckCircle2, 
-  Cloud, BookMarked, Terminal, Shield, DollarSign, Lock
+  Cloud, BookMarked, Terminal, Shield, DollarSign, Lock, User
 } from 'lucide-react';
 import { UserProgress } from '../types';
 import { getTotalCurriculumStats } from '../data/curriculumData';
@@ -22,6 +22,9 @@ interface HeaderProps {
   onOpenBooks?: () => void;
   onOpenIDE?: () => void;
   onOpenAdminPortal?: () => void;
+  onOpenStudentAuth?: () => void;
+  studentName?: string;
+  isRegisteredStudent?: boolean;
   onSearchChange?: (query: string) => void;
   searchQuery?: string;
   cloudSynced?: boolean;
@@ -37,6 +40,9 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenBooks,
   onOpenIDE,
   onOpenAdminPortal,
+  onOpenStudentAuth,
+  studentName = '',
+  isRegisteredStudent = false,
   cloudSynced = true,
   isAdminUnlocked = false
 }) => {
@@ -199,6 +205,30 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="sm:hidden">{t('header.certificate')}</span>
             <span className="hidden sm:inline">{t('header.certificate')}</span>
           </motion.button>
+
+          {/* Student Account & Cloud DB Profile Button */}
+          {onOpenStudentAuth && (
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.96 }}
+              onClick={onOpenStudentAuth}
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg border text-xs font-bold transition-all shadow-xs cursor-pointer ${
+                isRegisteredStudent
+                  ? isLight
+                    ? 'bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border-emerald-300'
+                    : 'bg-emerald-950/40 hover:bg-emerald-900/60 text-emerald-300 border-emerald-500/50 shadow-emerald-950/30'
+                  : isLight
+                    ? 'bg-cyan-50 hover:bg-cyan-100 text-cyan-900 border-cyan-300'
+                    : 'bg-[#131D33] hover:bg-[#1A2644] text-cyan-300 border-cyan-500/40'
+              }`}
+              title={isRegisteredStudent ? 'حساب الطالب موثق في قاعدة البيانات' : 'تسجيل حساب طالب في قاعدة البيانات'}
+            >
+              <User className={`w-3.5 h-3.5 ${isRegisteredStudent ? 'text-emerald-400' : 'text-cyan-400'}`} />
+              <span className="truncate max-w-[90px] sm:max-w-[120px]">
+                {studentName ? studentName.split(' ')[0] : (isRtl ? 'حسابي' : 'Account')}
+              </span>
+            </motion.button>
+          )}
 
           {/* Monetization & Earnings Button for Ads & Bank Transfer Guide - ONLY if Admin Unlocked */}
           {isAdminUnlocked && onOpenAdsSettings && (

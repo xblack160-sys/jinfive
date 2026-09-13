@@ -105,6 +105,18 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
 
   // Direct high-resolution image download to device (PNG 2400x1700 via Canvas)
   const handleDownloadCertificate = async () => {
+    // ENFORCE EXAM COMPLETION SECURITY: Certificate cannot be downloaded without passing the Grand Defense Exam
+    if (!isGrandExamPassed) {
+      alert(language === 'en' 
+        ? 'Certificate is locked! You must pass the Grand Defense Exam with at least 80% to generate and download the accredited certificate.' 
+        : 'الشهادة مقفلة! لا يمكن تحميل أو حفظ الشهادة إلا بعد اجتياز امتحان الدفاع الشامل الكبير بنسبة 80% على الأقل.');
+      if (onOpenGrandExam) {
+        onClose();
+        onOpenGrandExam();
+      }
+      return;
+    }
+
     try {
       setIsSavingImage(true);
       const safeName = (name || 'Student').trim().replace(/[^a-zA-Z0-9_\u0600-\u06FF]/g, '_');
@@ -177,6 +189,18 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
 
   // Dedicated Print or Save as PDF handler
   const handlePrint = async () => {
+    // ENFORCE EXAM COMPLETION SECURITY: Cannot print certificate without passing the Grand Defense Exam
+    if (!isGrandExamPassed) {
+      alert(language === 'en' 
+        ? 'Printing is locked! You must pass the Grand Defense Exam to unlock and print the official diploma.' 
+        : 'الطباعة مقفلة! لا يمكن طباعة أو تصدير الشهادة إلا بعد اجتياز الامتحان الشامل واعتماد درجاتك.');
+      if (onOpenGrandExam) {
+        onClose();
+        onOpenGrandExam();
+      }
+      return;
+    }
+
     try {
       setIsSavingImage(true);
       const safeName = (name || 'Student').trim().replace(/[^a-zA-Z0-9_\u0600-\u06FF]/g, '_');
@@ -750,10 +774,13 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
               onClick={handleDownloadCertificate}
               disabled={isSavingImage}
               className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs transition-all shadow-lg ${
-                saveSuccess
-                  ? 'bg-emerald-500 text-black shadow-emerald-950/40'
-                  : 'bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 text-black shadow-amber-950/40'
+                !isGrandExamPassed 
+                  ? 'bg-slate-800 text-slate-400 border border-amber-500/30 cursor-not-allowed opacity-90'
+                  : saveSuccess
+                    ? 'bg-emerald-500 text-black shadow-emerald-950/40'
+                    : 'bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 text-black shadow-amber-950/40'
               }`}
+              title={!isGrandExamPassed ? (language === 'en' ? 'Pass Defense Exam first' : 'يتطلب اجتياز امتحان الدفاع أولاً') : undefined}
             >
               {isSavingImage ? (
                 <>
@@ -764,6 +791,11 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
                 <>
                   <CheckCircle2 className="w-4 h-4 text-black" />
                   <span>{t('cert.btn_saved_success')}</span>
+                </>
+              ) : !isGrandExamPassed ? (
+                <>
+                  <Lock className="w-4 h-4 text-amber-400" />
+                  <span>{language === 'en' ? 'Download Locked (Pass Exam)' : 'التحميل مقفل (يتطلب الامتحان)'}</span>
                 </>
               ) : (
                 <>
@@ -776,10 +808,14 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
             {/* Print / PDF Button */}
             <button
               onClick={handlePrint}
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#1C2030] hover:bg-[#252A40] text-slate-200 text-xs font-semibold border border-white/[0.1] transition-colors"
-              title={language === 'en' ? 'Print or export certificate as PDF' : 'طباعة أو تصدير وثيقة الشهادة كملف PDF'}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold border transition-colors ${
+                !isGrandExamPassed
+                  ? 'bg-[#121626] text-slate-500 border-white/[0.04] cursor-not-allowed'
+                  : 'bg-[#1C2030] hover:bg-[#252A40] text-slate-200 border-white/[0.1]'
+              }`}
+              title={!isGrandExamPassed ? (language === 'en' ? 'Pass Defense Exam first' : 'يتطلب اجتياز الامتحان أولاً') : (language === 'en' ? 'Print or export certificate as PDF' : 'طباعة أو تصدير وثيقة الشهادة كملف PDF')}
             >
-              <Printer className="w-4 h-4 text-slate-400" />
+              {!isGrandExamPassed ? <Lock className="w-3.5 h-3.5 text-slate-500" /> : <Printer className="w-4 h-4 text-slate-400" />}
               <span>{t('cert.btn_print_pdf')}</span>
             </button>
 

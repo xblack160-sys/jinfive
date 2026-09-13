@@ -142,18 +142,41 @@ export const FullAiStudioIDE: React.FC<FullAiStudioIDEProps> = ({
     setTerminalLogs(prev => [
       ...prev,
       `\n$ ${selectedProject.runCommand}`,
-      `[GPU Launcher]: Allocating CUDA streams on Device 0...`,
-      `[Compiler]: JIT Warmup & Tensor Allocation...`
+      `[GPU Launcher]: Allocating CUDA streams on Device 0 (NVIDIA A100-SXM4-80GB)...`,
+      `[Compiler]: JIT Compilation & Real-Time Tensor Analysis in progress...`
     ]);
 
-    // Simulate realistic execution delay with step-by-step terminal output
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/code/simulate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          code: currentCode,
+          lessonTitle: `${selectedProject.title} (${activeFileName})`
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const output = data.result || selectedProject.simulationOutput;
+        setTerminalLogs(prev => [
+          ...prev,
+          output
+        ]);
+      } else {
+        setTerminalLogs(prev => [
+          ...prev,
+          selectedProject.simulationOutput
+        ]);
+      }
+    } catch (err) {
       setTerminalLogs(prev => [
         ...prev,
         selectedProject.simulationOutput
       ]);
+    } finally {
       setIsRunning(false);
-    }, 1200);
+    }
   };
 
   const handleExecuteCommand = (e: React.FormEvent) => {
