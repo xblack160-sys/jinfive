@@ -1,17 +1,60 @@
-# JINNA 5 - منصة تأهيل مهندسي وباحثي الذكاء الاصطناعي ونظم LLMs
-
-> **تم التطوير بواسطة:** المهندس يوسف الباز (Automation Ai Yousuf Albaz)
-
-منصة تفاعلية هندسية متقدمة لتأهيل وتدريب مهندسي وباحثي الذكاء الاصطناعي من مستوى العتاد والرياضيات حتى تدريب ونشر النماذج اللغوية الضخمة (LLMs) على بيئات الحوسبة الموزعة.
+<p align="center">
+  <img src="https://img.shields.io/badge/Vercel-Deployment--Active-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel Status" />
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Google%20Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white" alt="Gemini API" />
+</p>
 
 ---
 
-## 🌟 مميزات المنصة
-- **10 فصول تخصصية عميقة:** من CUDA وVRAM وحتى Distillation وQuantization وDistributed Training (FSDP/Megatron-LM).
-- **معمل كود تفاعلي:** تشغيل وتعديل خوارزميات PyTorch وNumPy ومحاكاة مصفوفات الانتباه وFlashAttention مباشرة في المتصفح.
-- **مساعد ذكي مدعوم بـ Gemini:** يقدم شروحات معمقة، مراجعة أكواد، ونصائح مقابلات شركات الذكاء الاصطناعي الكبرى (Meta / OpenAI / DeepMind).
-- **أوراق بحثية ومحاضرات مرجعية:** روابط مباشرة لـ arXiv ومستودعات GitHub ومحاضرات Stanford / MIT / Karpathy.
-- **شهادة إتمام معتمدة:** تصدر باسم المتعلم وكود تحقق مشفر `JINNA5-XXXX` بعد إكمال كافة الفصول والتحديات.
+# 🚀 منصة JINNA 5 | من الأساسيات إلى بناء نماذج الذكاء الاصطناعي من الصفر
+
+> **إشراف وتطوير:** المهندس يوسف الباز (Automation AI Yousuf Albaz)
+
+منصة تعليمية وتطبيقية متكاملة تهدف لتأهيل وتدريب مهندسي الذكاء الاصطناعي للعمل في أكبر الشركات العالمية. تأخذك المنصة في رحلة هندسية كاملة تبدأ من **علوم الحاسب ومكونات العتاد (Hardware)** وحتى **بناء وتدريب النماذج اللغوية الضخمة (LLMs) وتعديلها بنفسك من الصفر**.
+
+🌐 **رابط المنصة الحي المباشر:** [jinfi.vercel.app](https://jinfi.vercel.app/)
+
+---
+
+## 📚 المسار التعليمي للمنصة (Learning Path)
+
+1. **أساسيات علوم الحاسب والعتاد (Computer Science & Hardware):**
+   - فهم معمارية المعالجات (CPUs vs GPUs vs TPUs).
+   - إدارة الذاكرة (VRAM & RAM) وكيفية التعامل مع الـ Data Streams.
+
+2. **الرياضيات والبرمجة للذكاء الاصطناعي (Math & Programming Core):**
+   - الجبر الخطي (Linear Algebra) وحساب التغير (Calculus) المخصص للتعلم العميق.
+   - كود تفاعلي بلغة Python ومكتبات NumPy وPyTorch.
+
+3. **بناء الشبكات العصبية (Neural Networks Architecture):**
+   - فهم التنعيم والإشراف (Forward & Backward Propagation).
+   - تصميم معماريات الانتباه (Transformers & Self-Attention Mechanics).
+
+4. **بناء وتدريب النماذج الضخمة من الصفر (LLM Training from Scratch):**
+   - تجميع ومعالجة البيانات الضخمة (Data Tokenization & Pre-training).
+   - التدريب الموزع على عدة كروت شاشة (`FSDP` / `Megatron-LM`).
+   - ضبط النماذج الدقيق (Fine-Tuning & Quantization) لنشرها واستهلاك موارد أقل.
+
+5. **التأهيل السريري والشركات الكبرى (Industry & Enterprise Readiness):**
+   - مراجعة الأوراق البحثية الحديثة (*arXiv / Meta / OpenAI / DeepMind*).
+   - محاكاة أسئلة وأكواد المقابلات التقنية لشركات الذكاء الاصطناعي العالمية.
+
+---
+
+## 🌟 مميزات المنصة الرئيسية
+
+- ⚡ **معمل كود تفاعلي:** كتابة واختبار خوارزميات الذكاء الاصطناعي مباشرة داخل المتصفح.
+- 🤖 **مساعد ذكي مدعوم بـ Gemini:** يقدم شروحات مخصصة، مراجعة أكواد، وتصحيح الأخطاء لحظياً.
+- 🏆 **شهادة إتمام معتمدة:** تصدر باسم المتعلم وتتضمن كود تحقق مشفر `JINNA5-XXXX` بعد إكمال كافة الفصول والتحديات.
+
+---
+
+## 🛠️ التكنولوجيا المستخدمة (Tech Stack)
+
+- **Frontend:** React, TypeScript, Tailwind CSS
+- **AI Core:** Google Gemini API Integration
+- **Deployment & Hosting:** Vercel (Production Automation)
 
 ---
 
@@ -26,51 +69,3 @@ cp .env.example .env
 
 # 3. تشغيل خادم التطوير
 npm run dev
-```
-
-المنصة ستعمل على الرابط: `http://localhost:3000`
-
----
-
-## 🔑 كيفية الحصول على مفتاح Gemini API مجاناً (Free API Key)
-
-1. ادخل إلى منصة **Google AI Studio**:
-   👉 [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
-2. سجّل الدخول بحساب Google الخاص بك.
-3. اضغط على الزر الأزرق **"Create API key"** (إنشاء مفتاح API).
-4. اختر إنشاء المفتاح في مشروع جديد أو مشروع قائم (الخدمة مجانية تماماً للاستخدام العادي وتدعم أحدث نماذج Gemini مثل `gemini-2.5-flash` و `gemini-2.5-pro`).
-5. انسخ المفتاح، وضعه في ملف `.env`:
-   ```env
-   GEMINI_API_KEY=your_copied_api_key_here
-   ```
-
----
-
-## 🌐 كيفية نشر المنصة لتكون متاحة للجميع (Deployment Guide)
-
-المنصة مبنية بنظام **Full-stack (React + Express Server)** لضمان أمان مفتاح الـ API وعدم تسريبه للمتصفح. لذلك يفضل نشرها على منصات تدعم خوادم Node.js:
-
-### الخيار 1: النشر على Render (موصى به وسهل ومجاني)
-1. ادخل على [render.com](https://render.com) وسجل دخولك بحساب GitHub.
-2. اضغط على **"New +"** ثم اختر **"Web Service"**.
-3. اربط مستودع GitHub الخاص بـ `JINNA 5`.
-4. اضبط الإعدادات التالية:
-   - **Environment:** `Node`
-   - **Build Command:** `npm install && npm run build`
-   - **Start Command:** `npm run start`
-5. في قسم **Environment Variables** (المتغيرات البيئية):
-   - أضف المتغير `GEMINI_API_KEY` وقيمته مفتاحك من Google AI Studio.
-6. اضغط **"Create Web Service"**. ستحصل على رابط مجاني مباشر (مثل: `https://jinna-5.onrender.com`).
-
-### الخيار 2: النشر على Railway
-1. ادخل على [railway.app](https://railway.app) وسجل دخولك بـ GitHub.
-2. اضغط **New Project** -> **Deploy from GitHub repo**.
-3. أضف المتغير `GEMINI_API_KEY` في تبويب **Variables**.
-4. سيقوم Railway بالبناء والتشغيل تلقائياً.
-
----
-
-## 👨‍💻 حقوق التطوير والملكية
-- **المطور:** المهندس يوسف الباز
-- **العلامة التقنية:** Automation Ai Yousuf Albaz
-- **المنصة:** JINNA 5 AI Engineering Platform
